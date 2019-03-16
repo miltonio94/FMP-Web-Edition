@@ -1,0 +1,27 @@
+{
+  "name": "Pianonator",
+  "version": "0.0.1",
+  "description": "Software to practice finger technique on the piano",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/miltonio94/FMP-Web-Edition",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Hipster Sensei",
+  "license": "",
+  "devDependencies": {
+    "electron": "^4.0.7",
+    "electron-rebuild": "^1.8.4"
+  },
+  "dependencies": {
+    "serialport": "^7.1.4",
+    "svg.js": "^2.7.1"
+  }
+}
