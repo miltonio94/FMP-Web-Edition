@@ -1,6 +1,4 @@
-const generatePiano = (nBlack, nWhite, _width, _height, startingKeyNumber, draw) => {
-
-
+function generatePiano(nBlack, nWhite, _width, _height, startingKeyNumber, draw){
     let piano = [];
     let width = _width / nWhite;
     let begginingX = _width /10;
@@ -22,13 +20,12 @@ const generatePiano = (nBlack, nWhite, _width, _height, startingKeyNumber, draw)
             x++;
         }
     }
-
     console.log("this piano has " + piano.length + " keys");
     
     return piano.sort((a, b) => a.attr().keyNumber - b.attr().keyNumber);
 }
 
-const generateLines = (nWhite, _width, _height, _startX, draw) => {
+function generateLines(nWhite, _width, _height, _startX, draw){
     let lanes = [];
     let width = _width / nWhite;
     let begginingX = _width /10;
@@ -53,10 +50,9 @@ const generateLines = (nWhite, _width, _height, _startX, draw) => {
         let endY = _height;
         lanes.push(draw.line(startX +_startX, startY, endX +_startX, endY).stroke({ color: "#444748", width: 2, linecap: 'round' }));
     }
-
 }
 
-const pianoResize = (_width, _height, numbWhites, N_BLACK, piano) => {
+function pianoResize(_width, _height, numbWhites, N_BLACK, piano){
     let newWhiteKeyWidth = _width / numbWhites;
     let newBlackKeyWidth = newWhiteKeyWidth * 6.5;
 
@@ -65,7 +61,7 @@ const pianoResize = (_width, _height, numbWhites, N_BLACK, piano) => {
     });
 }
 
-const isKeySharp = (key) => {
+function isKeySharp(key){
     let retVal = false;
     
     switch (key % 12) {
@@ -92,7 +88,7 @@ const isKeySharp = (key) => {
     return retVal;
 }
 
-const createKey = (_keyNumber, x, y, width, height, isSharp, draw) => {
+function createKey(_keyNumber, x, y, width, height, isSharp, draw){
     const black = "#262A2A";// #262A2A {r:0,g:0,b:0};
     const white = "#F9F9EF";// #F9F9EF {r:0,g:0,b:0};
     let key;   
@@ -112,5 +108,4 @@ const createKey = (_keyNumber, x, y, width, height, isSharp, draw) => {
     key.attr({'keyNumber' :_keyNumber});
 
     return key;
-
 }

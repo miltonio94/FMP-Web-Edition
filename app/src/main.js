@@ -10,8 +10,20 @@ const N_BLACK = 25;
 const N_WHITE = 36;
 const STARTING_KEY_NUMBER = 36;
 
+
+
+
+const black = "#262A2A";// #262A2A {r:0,g:0,b:0};
+const white = "#F9F9EF";// #F9F9EF {r:0,g:0,b:0};
+const red = "#EF131A";// #EF131A {r:0,g:0,b:0};
+const blue = "#54A9E5";// #54A9E5 {r:0,g:0,b:0};
+const orange = "#FD9025";// #FD9025 {r:0,g:0,b:0};
+const green = "#D2DE47"; // #D2DE47 {r:0,g:0,b:0};
+const grey = "#444748"; // #444748 
+
+
 let mainDraw = document.getElementById('main');
-let drawWidth = mainDraw.offsetWidth;
+let drawWidth = mainDraw.offsetWidth - (mainDraw.offsetWidth * .2) ;
 let drawHeight = mainDraw.offsetHeight;
 
 let draw = SVG("#drawing").size(drawWidth, drawHeight);
@@ -23,7 +35,7 @@ console.log(draw);
 // const port = new  SerialPort('9600', {baudRate:9600});
 
 console.log("width: " + drawWidth + "\t height: " + drawHeight);
-
+let lanes = generateLines(N_WHITE, drawWidth, drawHeight, (drawWidth * .1), draw);
 let piano = generatePiano(N_BLACK, N_WHITE, drawWidth, drawHeight, STARTING_KEY_NUMBER, draw);
 
 
@@ -87,17 +99,26 @@ function fingerUp(fingerNumber){
 
 function noteOn(note){    
     if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'true'){
-        piano[note - STARTING_KEY_NUMBER].fill("blue");
+        piano[note - STARTING_KEY_NUMBER].fill(blue);
     }else if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'false'){
-        piano[note - STARTING_KEY_NUMBER].fill("green");
+        piano[note - STARTING_KEY_NUMBER].fill(green);
     }  
 }
 
 function noteOff(note){
     if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'true'){
-        piano[note - STARTING_KEY_NUMBER].fill("black");
+        piano[note - STARTING_KEY_NUMBER].fill(black);
     } else if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'false'){
-        piano[note - STARTING_KEY_NUMBER].fill("white");
+        piano[note - STARTING_KEY_NUMBER].fill(white);
     }
    
 }
+
+
+function update(){
+
+}
+
+// function draw(){
+
+// }
