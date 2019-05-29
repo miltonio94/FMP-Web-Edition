@@ -9,7 +9,6 @@ const checkNoteOffEdge = (notes) => {
         if(n.status === FALLING){
             if(n.svg.attr().y >= drawHeight + 10){
                 n.status = OUT_OF_BOUNDS;
-            } else if(n.status == OUT_OF_BOUNDS){
                 if(piano[n.note - STARTING_KEY_NUMBER].attr().isSharp == 'true'){
                     piano[n.note - STARTING_KEY_NUMBER].fill(black);
                 } else{
