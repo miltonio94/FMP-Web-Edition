@@ -1,10 +1,7 @@
 
-const noteOn = (note) => {     
-    if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'true'){
-        piano[note - STARTING_KEY_NUMBER].fill(blue);
-    }else if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'false'){
-        piano[note - STARTING_KEY_NUMBER].fill(green);
-    }  
+const noteOn = (note) => {
+        piano[note - STARTING_KEY_NUMBER].fill(red);
+        checkNoteHitOrMissOnMidiOn(notes, piano[note - STARTING_KEY_NUMBER], note);
 }
 
 const noteOff = (note) =>{
@@ -12,7 +9,8 @@ const noteOff = (note) =>{
         piano[note - STARTING_KEY_NUMBER].fill(black);
     } else if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'false'){
         piano[note - STARTING_KEY_NUMBER].fill(white);
-    }
+    } 
+    checkNoteHitOrMissOnMidiOff(notes, piano[note - STARTING_KEY_NUMBER], note);
 }
 
 const onMidiFailure = () =>{

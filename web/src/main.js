@@ -23,24 +23,27 @@ let previousTime = 0;
 let lanes;
 let piano;
 
+let gameStats = {};
+
 const notes = [
-    noteSkeleton(50, 2, 72, 400, 'R1'),
-    noteSkeleton(50, 2, 74, 300, 'R2'),
-    noteSkeleton(50, 2, 76, 200, 'R3'),
-    noteSkeleton(50, 2, 77, 100, 'R4'),
-    noteSkeleton(50, 2, 79, 000, 'R5'),
-    noteSkeleton(50, 2, 60, 400, 'L1'),
-    noteSkeleton(50, 2, 59, 300, 'L2'),
-    noteSkeleton(50, 2, 57, 200, 'L3'),
-    noteSkeleton(50, 2, 55, 100, 'L4'),
-    noteSkeleton(50, 2, 53, 000, 'L5'),
+    noteSkeleton(30, 4, 72, -150, 'R1'),
+    noteSkeleton(30, 4, 74, -550, 'R2'),
+    noteSkeleton(30, 4, 76, -1050, 'R3'),
+    noteSkeleton(30, 4, 77, -1550, 'R4'),
+    noteSkeleton(30, 4, 79, -2150, 'R5'),
+    noteSkeleton(30, 4, 60+4, -2750, 'L1'),
+    noteSkeleton(30, 4, 59+3, -3350, 'L2'),
+    noteSkeleton(30, 4, 57+3, -3950, 'L3'),
+    noteSkeleton(30, 4, 55+4, -4750, 'L4'),
+    noteSkeleton(30, 4, 53+4, -5150, 'L5'),
 ];
 
+
+
 if (navigator.requestMIDIAccess) {
-    console.log('This browser supports WebMIDI!');
+    state = PLAYING
     navigator.requestMIDIAccess().then(onMidiSuccess, onMidiFailure);
 } else {
-    console.log('WebMIDI is not supported in this browser.');
     state = NO_MIDI;
 }
 
@@ -57,16 +60,14 @@ if(state == NO_MIDI){
     createNotesFromSkeleton(notes, piano, STARTING_KEY_NUMBER, draw);
 }
 
-const update = () =>{
-
+const update = () =>{    
+    checkNoteOffEdge(notes);
+    gameStats = updateGameStats(notes);
 }
 
 const animate = (dt) => {
     // console.log(dt);
-    notes.forEach( el => {
-        let newY = el.svg.attr().y + (el.velocity / dt);
-        el.move = el.svg.move(el.x, newY);
-    });
+    notes.forEach(moveNote);
 }
 
 const loop = (elapsed_time) => {
@@ -74,7 +75,8 @@ const loop = (elapsed_time) => {
     previousTime = elapsed_time;
     update();
     animate(dt);
-    window.requestAnimationFrame(loop);
+    window.requestAnimationFrame(loop);   
+    // console.log(notes);
     
 }
 

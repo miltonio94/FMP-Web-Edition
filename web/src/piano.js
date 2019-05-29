@@ -2,7 +2,6 @@ function generatePiano(nBlack, nWhite, _width, _height, startingKeyNumber, draw)
     let piano = [];
     let width = _width / nWhite;
     let begginingX = _width /10;
-    console.log(begginingX);
     
     let height = _height / 6.0;
     let y = _height - height;
@@ -20,7 +19,6 @@ function generatePiano(nBlack, nWhite, _width, _height, startingKeyNumber, draw)
             x++;
         }
     }
-    console.log("this piano has " + piano.length + " keys");
     
     return piano.sort((a, b) => a.attr().keyNumber - b.attr().keyNumber);
 }
@@ -40,7 +38,8 @@ function generateLines(nWhite, _width, _height, _startX, draw){
         let startY = 0;
         let endX = startX;
         let endY = _height;
-        lanes.push(draw.line(startX +_startX, startY, endX +_startX, endY).stroke({ color: "#444748", width: 2, linecap: 'round' }));
+        lanes.push(draw.line(startX +_startX, startY, endX +_startX, endY)
+            .stroke({ color: "#444748", width: 2, linecap: 'round' }));
     }
 
     for (let i = 7; i < nWhite; i += 7) {
