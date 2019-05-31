@@ -32,12 +32,19 @@ const checkNoteHitOrMissOnMidiOn = (notes, key, noteNumber) => {
             let noteY = n.svg.attr().y + n.svg.attr().height;
             let keyY = key.attr().y;            
 
-            if(noteY >= keyY - HIT_THREASHOLD  && noteY <= keyY + HIT_THREASHOLD  ){
-                key.fill(green);
-                n.enterStat = HIT;
-            } else {
-                n.enterStat = MISSED;
-            }
+            let fingers = whatFingerIsDown(hands);
+            console.log(n.finger === fingers[0]);
+            
+            fingers.forEach(fingerCode => {
+                if(noteY >= keyY - HIT_THREASHOLD  && noteY <= keyY + HIT_THREASHOLD  && n.finger === fingerCode ){
+                    key.fill(green);
+                    n.enterStat = HIT;
+                } else {
+                    n.enterStat = MISSED;
+                }     
+            })
+
+           
 
         }
     });
@@ -70,7 +77,7 @@ function noteSkeleton(velocity, duration, note, startY, finger){
         velocity, 
         duration, 
         note, 
-        finger, 
+        finger : finger, 
         svg, 
         startY, 
         height, 

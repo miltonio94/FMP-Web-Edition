@@ -16,6 +16,8 @@ let drawHeight = mainDraw.offsetHeight;
 
 let hands = createHands();
 
+whatFingerIsDown(hands);
+
 let draw = SVG("#drawing").size(drawWidth, drawHeight);
 
 let state = PLAYING;
