@@ -14,6 +14,8 @@ let mainDraw = document.getElementById('main');
 let drawWidth = mainDraw.offsetWidth - (mainDraw.offsetWidth * .2) ;
 let drawHeight = mainDraw.offsetHeight;
 
+let hands = createHands();
+
 let draw = SVG("#drawing").size(drawWidth, drawHeight);
 
 let state = PLAYING;

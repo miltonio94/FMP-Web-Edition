@@ -12,11 +12,11 @@
 #define LF1 1
 
 // defining pins for right fingers
-#define RF5 10
-#define RF4 9
-#define RF3 8
-#define RF2 7
-#define RF1 6
+#define RF5 23
+#define RF4 22
+#define RF3 21
+#define RF2 20
+#define RF1 19
 
 
 const byte debounce = 500;
@@ -60,19 +60,19 @@ void loop() {
       if(fingerStates[i].risingEdge()){ //looking for a low to high transition
         usbMIDI.sendNoteOff(i + 1, 99, 0); // sending MIDI message of note off takes note, velocity and channel as arguments
 
-        // Serial.print("f");
-        // Serial.print(i+1);
-        // Serial.print(": ");
-        // Serial.print("DE-PRESSED");
-        // Serial.print("\n");        
+        Serial.print("f");
+        Serial.print(i+1);
+        Serial.print(": ");
+        Serial.print("DE-PRESSED");
+        Serial.print("\n");        
       }else if(fingerStates[i].fallingEdge()){ //looking for a high to low transition
         usbMIDI.sendNoteOn(i + 1, 99, 0); // sending MIDI message of note on takes note, velocity and channel as arguments
         
-        // Serial.print("f");
-        // Serial.print(i+1);
-        // Serial.print(": ");
-        // Serial.print("PRESSED");
-        // Serial.print("\n");
+        Serial.print("f");
+        Serial.print(i+1);
+        Serial.print(": ");
+        Serial.print("PRESSED");
+        Serial.print("\n");
       }
     }
   }

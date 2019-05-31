@@ -28,9 +28,11 @@ const getMidiMsg = (msg) =>{
     }
 
     if(command == 159 ){
-        fingerDown(note);
+        fingerDown(note, hands);
+        // console.log(hands);
     }else if(command == 143){
-        fingerUp(note);
+        fingerUp(note, hands);
+        // console.log(hands);
     }
 }
 

@@ -27,9 +27,7 @@ const moveNote = (note) => {
 };
 
 const checkNoteHitOrMissOnMidiOn = (notes, key, noteNumber) => {
-    notes.forEach(n => {
-        // console.log(n);
-        
+    notes.forEach(n => {        
         if(n.note == noteNumber && n.status === FALLING){
             let noteY = n.svg.attr().y + n.svg.attr().height;
             let keyY = key.attr().y;            
@@ -46,9 +44,7 @@ const checkNoteHitOrMissOnMidiOn = (notes, key, noteNumber) => {
 };
 
 const checkNoteHitOrMissOnMidiOff = (notes, key, noteNumber) => {    
-    notes.forEach(n => {
-        // console.log('dfsd');
-        
+    notes.forEach(n => {        
         if(n.note == noteNumber && n.status === FALLING ){
             let noteY = n.svg.attr().y;
             let keyY = key.attr().y;
