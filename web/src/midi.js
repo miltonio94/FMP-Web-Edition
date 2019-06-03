@@ -13,6 +13,24 @@ const noteOff = (note) =>{
     checkNoteHitOrMissOnMidiOff(notes, piano[note - STARTING_KEY_NUMBER], note);
 }
 
+const noteOnMenu = (note) => {
+    if(note === 72){
+        piano[note - STARTING_KEY_NUMBER].fill(green);
+        setTimeout(()=>{window.location.href = 'game.html'}, 500)
+    } else{
+        piano[note - STARTING_KEY_NUMBER].fill(grey);
+    }
+    
+}
+
+const noteOffMenu = (note) =>{
+if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'true'){
+    piano[note - STARTING_KEY_NUMBER].fill(black);
+} else if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'false'){
+    piano[note - STARTING_KEY_NUMBER].fill(white);
+} 
+}
+
 const onMidiFailure = () =>{
     console.log("Error!");
 }
@@ -36,10 +54,29 @@ const getMidiMsg = (msg) =>{
     }
 }
 
+const getMidiMsgMenu = (msg) =>{
+    let command = msg.data[0];
+    let note = msg.data[1];
+
+    if(command == 144){
+        noteOnMenu(note);
+    }else if(command == 128){
+        noteOffMenu(note);
+    }
+}
+
 const onMidiSuccess = (midiAccess) =>{
     let inputs = midiAccess.inputs;
 
     for(let input of midiAccess.inputs.values()){
         input.onmidimessage = getMidiMsg;
+    }
+}
+
+const onMidiSuccessMenu = (midiAccess) =>{
+    let inputs = midiAccess.inputs;
+
+    for(let input of midiAccess.inputs.values()){
+        input.onmidimessage = getMidiMsgMenu;
     }
 }

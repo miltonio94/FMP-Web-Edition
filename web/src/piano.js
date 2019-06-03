@@ -1,7 +1,7 @@
 function generatePiano(nBlack, nWhite, _width, _height, startingKeyNumber, draw){
     let piano = [];
     let width = _width / nWhite;
-    let begginingX = _width /10;
+    let begginingX = _width * .10;
     
     let height = _height / 6.0;
     let y = _height - height;

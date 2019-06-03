@@ -5,18 +5,18 @@
 #include <Bounce.h>
 
 // defining pins for left fingers
-#define LF5 5
+#define LF5 3
 #define LF4 4
-#define LF3 3
-#define LF2 2
-#define LF1 1
+#define LF3 2
+#define LF2 1
+#define LF1 0
 
 // defining pins for right fingers
-#define RF5 23
-#define RF4 22
+#define RF5 20
+#define RF4 19
 #define RF3 21
-#define RF2 20
-#define RF1 19
+#define RF2 22
+#define RF1 23
 
 
 const byte debounce = 500;

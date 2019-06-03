@@ -1,25 +1,3 @@
-const LEFT_HAND = 'LEFT';
-const RIGHT_HAND = 'RIGHT';
-
-const FINGER1_NAME = 'thumb';
-const FINGER2_NAME = 'index';
-const FINGER3_NAME = 'middle';
-const FINGER4_NAME = 'ring';
-const FINGER5_NAME = 'pinky';
-
-const LEFT_FINGER1_CODE = 'L1';
-const LEFT_FINGER2_CODE = 'L2';
-const LEFT_FINGER3_CODE = 'L3';
-const LEFT_FINGER4_CODE = 'L4';
-const LEFT_FINGER5_CODE = 'L5';
-
-const RIGHT_FINGER1_CODE = 'R1';
-const RIGHT_FINGER2_CODE = 'R2';
-const RIGHT_FINGER3_CODE = 'R3';
-const RIGHT_FINGER4_CODE = 'R4';
-const RIGHT_FINGER5_CODE = 'R5';
-
-
 const fingerDown = (fingerNumber) =>{
     console.log("finger " + fingerNumber + " is down");
     switch(fingerNumber){

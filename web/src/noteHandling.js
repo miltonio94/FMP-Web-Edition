@@ -1,9 +1,3 @@
-const FALLING = "I'M FREEEEEE, FREE FALLING!!!";
-const OUT_OF_BOUNDS = "OUT OF HERE"; // find a musical reference for this state
-const MISSED = "MOANING";
-const HIT = "HIT ME BABY ONE MORE TIME";
-const NOT_YET_HIT = 'NOT YET HIT';
-
 const checkNoteOffEdge = (notes) => {   
      notes.forEach(n => {
         if(n.status === FALLING){
@@ -14,6 +8,14 @@ const checkNoteOffEdge = (notes) => {
                 } else{
                     piano[n.note - STARTING_KEY_NUMBER].fill(white);
                 }
+
+                if(n.enterStat === NOT_YET_HIT){
+                    n.enterStat = MISSED;
+                }
+                if(n.exitStat === NOT_YET_HIT){
+                    n.exitStat = MISSED;
+                }
+                
             }
         } 
      });
