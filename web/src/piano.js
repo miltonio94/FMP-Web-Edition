@@ -47,7 +47,18 @@ function generateLines(nWhite, _width, _height, _startX, draw){
         let endY = _height;
         lanes.push(draw.line(startX +_startX, startY, endX +_startX, endY)
              .stroke({ color: "#444748", width: 2, linecap: 'round' }));
-    }
+    }    
+
+    return lanes.sort(((l1, l2) => {
+        if(l1.x() < l2.x()){
+            return -1
+        }
+        if(l1.x() > l2.x()){
+            return 1
+        }
+
+        return 0
+    }));;
 }
 
 function pianoResize(_width, _height, numbWhites, N_BLACK, piano){

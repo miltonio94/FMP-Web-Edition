@@ -1,6 +1,8 @@
-
+HTMLMediaElement.autoplay = true
 const edm = Synth.createInstrument('edm');
 const piano = Synth.createInstrument('piano');
+
+edm.play('C', 4, 2);
 
 const generateButtons = (target, numbOfButtons) => {
     for(let i = 0, octave = 1, key = 1; i < numbOfButtons; i++){

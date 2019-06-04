@@ -1,5 +1,8 @@
 
 const noteOn = (note) => {
+        console.log(`midi = ${note} \n` + `midi % 12 = ${note % 12}`);
+
+        playSound(pianoSynth, note);
         piano[note - STARTING_KEY_NUMBER].fill(red);
         checkNoteHitOrMissOnMidiOn(notes, piano[note - STARTING_KEY_NUMBER], note);
 }

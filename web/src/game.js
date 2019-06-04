@@ -13,20 +13,26 @@ let previousTime = 0;
 let lanes;
 let piano;
 
+const edm = Synth.createInstrument('edm');
+const pianoSynth = Synth.createInstrument('piano');
+
 let count = 5;
 countDownText = draw.text(count + '');
 countDownText.font({size:100});
 countDownText.fill(orange);
 countDownText.move(-1000);
 
+
+
 const countDown = ()=>{
-    if(count <= 6 && count >= 0){        
+    if(count <= 5 && count >= 0){        
             console.log(1000 % 1000);
             countDownText.text(count + '');
             textBBox = countDownText.bbox();
             countDownText.move(  mainDraw.offsetWidth / 2 - textBBox.width / 2
                                , (drawHeight - drawHeight / 6) / 2 - textBBox.height / 2);
-            count--
+            count--;
+            countDownMidi
     } else{
         countDownText.move(-1000);
         state = PLAYING;
@@ -34,6 +40,8 @@ const countDown = ()=>{
 }
 
 let gameStats = {};
+let scoreSVG = draw.text('Accurracy: 0%')
+scoreSVG.move(-1000);
 
 const notes = [
     noteSkeleton(30, 4, 72, -150, 'R1'),
@@ -54,8 +62,7 @@ let noMidiText = null;
 if (navigator.requestMIDIAccess) {
     state = COUNTDOWN
     navigator.requestMIDIAccess().then(onMidiSuccess, onMidiFailure);
-    // textBBox = countDownText.bbox();
-    // countDownText.move(mainDraw.offsetWidth / 2 - textBBox.width / 2, (drawHeight - drawHeight / 6) / 2 - textBBox.height / 2)
+
     setInterval(countDown, 1000);
 } else {
     state = NO_MIDI;
@@ -74,14 +81,18 @@ if(state == NO_MIDI){
 } else{
     
     lanes = generateLines(N_WHITE, drawWidth, drawHeight, (drawWidth * .1), draw);
-    piano = generatePiano(N_BLACK, N_WHITE, drawWidth, drawHeight, STARTING_KEY_NUMBER, draw);
-    
+    piano = generatePiano(N_BLACK, N_WHITE, drawWidth, drawHeight, STARTING_KEY_NUMBER, draw);   
+    scoreSVG.fill(grey);
     createNotesFromSkeleton(notes, piano, STARTING_KEY_NUMBER, draw);
 }
 
 const update = () =>{    
     checkNoteOffEdge(notes);
     gameStats = updateGameStats(notes);
+    if(state == PLAYING){
+        updateGameScore(gameStats, scoreSVG);
+        calculateScorePosition(scoreSVG);
+    }
     // console.log(gameStats);    
 }
 

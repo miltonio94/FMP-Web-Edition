@@ -25,6 +25,7 @@ const moveNote = (note) => {
     let newY = note.svg.attr().y + (note.velocity / dt);
     if(note.status === FALLING){
         note.move = note.svg.move(note.x, newY);
+        moveFingerIndicator(note.fingerSvg, note.svg);
     }
 };
 
@@ -45,12 +46,24 @@ const checkNoteHitOrMissOnMidiOn = (notes, key, noteNumber) => {
                     n.enterStat = MISSED;
                 }     
             })
-
-           
-
+        } else{
+            
         }
     });
 };
+
+const moveFingerIndicator = (finger, note) =>{
+    let noteX = note.x();
+    let noteY = note.y();
+    let noteWidth = note.width();
+    let noteHeight = note.height();
+    let fingerBBox = finger.bbox();
+
+    let newFingerX = noteX + noteWidth / 2 - fingerBBox.width / 2;
+    let newFingerY = noteY + noteHeight / 2 - fingerBBox.height / 2;;
+
+    finger.move(newFingerX, newFingerY);
+}
 
 const checkNoteHitOrMissOnMidiOff = (notes, key, noteNumber) => {    
     notes.forEach(n => {        
@@ -69,6 +82,7 @@ const checkNoteHitOrMissOnMidiOff = (notes, key, noteNumber) => {
 
 function noteSkeleton(velocity, duration, note, startY, finger){
     let svg = null;
+    let fingerSvg = null
     let x = 0;
     let height = duration * velocity;
     let status = FALLING;
@@ -81,6 +95,7 @@ function noteSkeleton(velocity, duration, note, startY, finger){
         note, 
         finger : finger, 
         svg, 
+        fingerSvg,
         startY, 
         height, 
         enterStat, 
@@ -97,6 +112,10 @@ const createNotesFromSkeleton = (notes, piano, startingKey, draw) => {
         
         note.svg = draw.rect(note.width, note.height);
         note.svg.move(note.x, note.startY);
+
+        note.fingerSvg = draw.text(note.finger);
+        note.fingerSvg.fill(black);
+        moveFingerIndicator(note.fingerSvg, note.svg);
         note.svg.fill(blue);
         note.svg.stroke({color:black})
     });
