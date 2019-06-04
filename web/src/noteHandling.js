@@ -36,7 +36,6 @@ const checkNoteHitOrMissOnMidiOn = (notes, key, noteNumber) => {
             let keyY = key.attr().y;            
 
             let fingers = whatFingerIsDown(hands);
-            console.log(n.finger === fingers[0]);
             
             fingers.forEach(fingerCode => {
                 if(noteY >= keyY - HIT_THREASHOLD  && noteY <= keyY + HIT_THREASHOLD  && n.finger === fingerCode ){

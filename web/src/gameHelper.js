@@ -25,12 +25,6 @@ function updateGameStats(notes){
     entryAccuracy = (notes.length  / entryHit) * 100;
     exitAccuracy = (notes.length  / exitHit) * 100;
 
-    // console.log(notes.length / entryHit);
-    
-
-    // console.log(`entry acc ${entryAccuracy} exit acc ${exitAccuracy}`);
-    
-
     entryAccuracy = entryAccuracy === Infinity ? 0 : entryAccuracy;
     exitAccuracy = exitAccuracy === Infinity ? 0 : exitAccuracy;
 
@@ -42,11 +36,6 @@ function updateGameStats(notes){
 }
 
 const calculateScorePosition = (score)=>{
-    console.log(`drawing width ${mainDraw.offsetWidth}\n` + 
-                `last line position ${lanes[lanes.length - 1].x()}\n` +
-                `size of space inbetween lane and end of canvas ${mainDraw.offsetWidth - lanes[lanes.length - 1].x()}` + 
-                `middle point of that space is therefor ${mainDraw.offsetWidth - (mainDraw.offsetWidth - lanes[lanes.length - 1].x()) / 2}`);
-
     let midRightHandConner = mainDraw.offsetWidth - (mainDraw.offsetWidth - lanes[lanes.length - 1].x()) / 2;
     let scoreBBox = score.bbox();
     let newScoreX = midRightHandConner - scoreBBox.width / 2;

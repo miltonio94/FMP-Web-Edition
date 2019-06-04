@@ -1,11 +1,6 @@
-const playSound = (synth, midi) => {
-    console.log(`the midi is ${midi}`);
-    
+const playSound = (synth, midi) => {    
     let octave = midiToOctave(midi);
-    let keyChar = noteChar(midi%12);
-
-    console.log(`the octave is ${octave} and the key is ${keyChar}`);
-    
+    let keyChar = noteChar(midi%12);   
 
     synth.play(keyChar, octave, 2)
 }
@@ -13,15 +8,11 @@ const playSound = (synth, midi) => {
 const midiToOctave = (midi) => {
     let octave = 0;
     octave = Math.floor((midi/12));
-    console.log(octave);
 
     return octave;
-    
 }
 
-const noteChar = (noteNumber) => {
-    console.log(`the note number is ${noteNumber}`);
-    
+const noteChar = (noteNumber) => {    
     let char = '';
 
     switch(noteNumber){

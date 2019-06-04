@@ -26,13 +26,11 @@ countDownText.move(-1000);
 
 const countDown = ()=>{
     if(count <= 5 && count >= 0){        
-            console.log(1000 % 1000);
             countDownText.text(count + '');
             textBBox = countDownText.bbox();
             countDownText.move(  mainDraw.offsetWidth / 2 - textBBox.width / 2
                                , (drawHeight - drawHeight / 6) / 2 - textBBox.height / 2);
             count--;
-            countDownMidi
     } else{
         countDownText.move(-1000);
         state = PLAYING;
@@ -93,17 +91,12 @@ const update = () =>{
         updateGameScore(gameStats, scoreSVG);
         calculateScorePosition(scoreSVG);
     }
-    // console.log(gameStats);    
 }
 
 const animate = (dt, elapsed_time) => {
-    // console.log(dt);
     if(state === PLAYING){
         notes.forEach(moveNote);
     }
-    // } else if(state === COUNTDOWN){
-    //     countDown(elapsed_time);
-    // }
 }
 
 const loop = (elapsed_time) => {
@@ -112,7 +105,6 @@ const loop = (elapsed_time) => {
     update();
     animate(dt, elapsed_time);
     window.requestAnimationFrame(loop);   
-    // console.log(notes);
     
 }
 

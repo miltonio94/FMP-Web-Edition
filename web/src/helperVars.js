@@ -15,6 +15,9 @@ const OUT_OF_BOUNDS = "OUT OF HERE"; // find a musical reference for this state
 const MISSED = "MOANING";
 const HIT = "HIT ME BABY ONE MORE TIME";
 const NOT_YET_HIT = 'NOT YET HIT';
+
+// helper variables
+
 const LEFT_HAND = 'LEFT';
 const RIGHT_HAND = 'RIGHT';
 const FINGER1_NAME = 'thumb';

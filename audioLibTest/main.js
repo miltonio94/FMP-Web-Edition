@@ -19,8 +19,8 @@ const generateButtons = (target, numbOfButtons) => {
 }
 
 const createKey = (keyChar, octave,  isSharp,) => {
-    const black = "#262A2A";// #262A2A {r:0,g:0,b:0};
-    const white = "#F9F9EF";// #F9F9EF {r:0,g:0,b:0};
+    const black = "#262A2A";// #262A2A 
+    const white = "#F9F9EF";// #F9F9EF 
     let key = document.createElement('button'); 
 
     key.setAttribute('keyChar', keyChar);
@@ -28,17 +28,11 @@ const createKey = (keyChar, octave,  isSharp,) => {
     key.innerHTML = keyChar;
 
     if(isSharp){
-        // console.log("sharp key width " + width);
         key.setAttribute('class','sharp-key');
 
     }else{    
-        // console.log("key width " + width);
         key.setAttribute('class', 'key');
     }
-
-    // key.attr({'isSharp':isSharp});
-    // key.attr({'pressed' : false});
-    // key.attr({'keyNumber' :_keyNumber});
 
     return key;
 }

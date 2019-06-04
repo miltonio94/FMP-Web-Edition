@@ -1,7 +1,5 @@
 
 const noteOn = (note) => {
-        console.log(`midi = ${note} \n` + `midi % 12 = ${note % 12}`);
-
         playSound(pianoSynth, note);
         piano[note - STARTING_KEY_NUMBER].fill(red);
         checkNoteHitOrMissOnMidiOn(notes, piano[note - STARTING_KEY_NUMBER], note);
@@ -35,7 +33,7 @@ if(piano[note - STARTING_KEY_NUMBER].attr().isSharp == 'true'){
 }
 
 const onMidiFailure = () =>{
-    console.log("Error!");
+    state = NO_MIDI;
 }
 
 const getMidiMsg = (msg) =>{
@@ -50,10 +48,8 @@ const getMidiMsg = (msg) =>{
 
     if(command == 159 ){
         fingerDown(note, hands);
-        // console.log(hands);
     }else if(command == 143){
         fingerUp(note, hands);
-        // console.log(hands);
     }
 }
 

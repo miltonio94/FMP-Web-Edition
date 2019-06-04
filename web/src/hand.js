@@ -1,5 +1,4 @@
 const fingerDown = (fingerNumber) =>{
-    console.log("finger " + fingerNumber + " is down");
     switch(fingerNumber){
         case 1:
             hands.leftHand.finger1.isDown = true;
@@ -65,7 +64,6 @@ function fingerNameToCode(name, side){
 }
 
 const fingerUp = (fingerNumber, hands) =>{
-    console.log("finger " + fingerNumber + " is up");
     switch(fingerNumber){
         case 1:
             hands.leftHand.finger1.isDown = false;
