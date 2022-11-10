@@ -17,7 +17,7 @@
   "author": "Hipster Sensei",
   "license": "",
   "devDependencies": {
-    "electron": "^4.0.7",
+    "electron": "^18.3.7",
     "electron-rebuild": "^1.8.4"
   },
   "dependencies": {
